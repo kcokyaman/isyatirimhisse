@@ -43,7 +43,7 @@ def fetch_stock_data(
     for symbol in symbols:
         url = f"{BASE_URL}?hisse={symbol}&startdate={start_date}&enddate={end_date}"
         try:
-            response = requests.get(url, timeout=10)
+            response = requests.get(url, timeout=10, verify=False)
             response.raise_for_status()
             data = pd.DataFrame(response.json().get("value", []))
         except Exception as e:
